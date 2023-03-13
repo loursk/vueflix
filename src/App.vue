@@ -1,9 +1,33 @@
 <script setup>
 import { /*RouterLink,*/ RouterView } from 'vue-router'
 // import HelloWorld from './components/HelloWorld.vue'
+
+import { ref } from 'vue'
+const notifications = ref(0)
+
 </script>
 
 <template>
-  <RouterView />
+  <div class="app">
+    <header id="header">
+      <div id="logo">
+        <img src="/logo.svg" alt="Vueflix" srcset="">
+      </div>
+      <nav id="nav">
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/about">À propos</a></li>
+        </ul>
+      </nav>
+      <div id="profile">
+        <span v-show=" notifications !== 0 " class="notifications"><span>{{ notifications }}</span> notifications</span>
+        <button class="register">S'inscrire</button>
+        <button v-on:click="notifications++" class="auth">Connexion</button>
+      </div>
+    </header>
+
+    <RouterView />
+    <footer>© Vueflix {{ new Date().getFullYear() }} - Mentions légales - À Propos</footer>
+  </div>
 </template>
 
