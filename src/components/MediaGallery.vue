@@ -5,7 +5,6 @@ import MediaList from "./MediaList.vue"
 export default{
   data () {
     return {
-      pos: '',
       search: '',
       data
     }
@@ -20,7 +19,7 @@ export default{
     getMovies(){
       return this.data.filter(media => {
 
-        return media.type == "movie"
+        return media.type === "movie"
       })
     },
     /**
@@ -28,7 +27,7 @@ export default{
      */
     getSeries(){
       return this.data.filter(media => {
-        return media.type == "serie"
+        return media.type === "serie"
       })
     },
     /**
@@ -47,11 +46,11 @@ export default{
 </script>
 
 <template>
+  
   <p class="search">
     <label for="searchtxt">Recherche</label>
     <input id="searchtxt" type="search" v-model="search" ref="search">
   </p>
-
   <main class="mediagallery">
     
     <!-- affichage des films -->    

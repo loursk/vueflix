@@ -1,9 +1,23 @@
 <script>
+import { transform } from '@vue/compiler-core'
+
 export default{
+  data () {
+    return {
+      pos: 0 // position horizontale en px
+    }
+  },
   props: {
-    medias: Object,
+    medias: {
+      type: Array,
+      default: () => [],
+      required: true
+    },
     search: String,
-    title: String
+    title: {
+      type: String,
+      default: ''
+    }
   },
   computed: {
     filterMedias(){
@@ -17,6 +31,12 @@ export default{
     }
   },
   methods: {
+    next() {
+      this.pos += 600;
+    },
+    prev() {
+      this.pos -= 600;
+    },
     getModal(e){
       // console.log(e.target.class);
       e.target.classList.add('modal')
@@ -26,17 +46,26 @@ export default{
 </script>
 
 <template>
-  <h1>{{ title }}</h1>
-  <ul v-if="filterMedias.length">
-    <li v-for="media in filterMedias" :key="media.id" >
-      <h2 class="title">{{ media.title }}</h2>
-      <img :src="'medias/'  + media.img" alt="" srcset="" @click="getModal">
-    </li>
-  </ul>
-  <!-- Aucun résultats -->
-  <ul v-else>
-    <li>Aucun média trouvé</li>
-  </ul>
+  <div class="medialist">
+
+    <h1>{{ title }}</h1>
+    <input type="button" class="prev" title="Précédent" value="◀" aria-label="Défiler vers la précédente" v-on:click="prev">
+    <input type="button" class="next" title="Suivant" value="▶" aria-label="Défiler vers la suite" v-on:click="next">
+    <ul v-if="filterMedias.length > 0" :style="'transform: translateX('+ pos + 'px)'">
+      <li v-for="media in filterMedias" :key="media.id" >
+        <a href="#">
+          <!-- <span class="visually-hidden">{{ media.title }}</span> -->
+          <!-- pour cacher un élément sans le retirer des liseurs d'écran -->
+          <h2 class="title">{{ media.title }}</h2>
+          <img :src="'medias/'  + media.img" alt="" srcset="" @click="getModal">
+        </a>
+      </li>
+    </ul>
+    <!-- Aucun résultats -->
+    <ul v-else>
+      <li>Aucun média trouvé</li>
+    </ul>
+  </div>
 </template>
 
 

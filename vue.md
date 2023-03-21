@@ -238,3 +238,7 @@ On surveille une donnée et on réagit lorsqu'il y a un changement (comme UseEff
 - watch : surveille une ou plusieurs variables et déclenche une fonction
 - hooks on* : fonctions qui se déclenchent à des moments précis du lifecycle
 
+## Traduction
+
+internationalization = i18n
+localization = L10n
