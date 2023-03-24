@@ -31,11 +31,13 @@ export default{
     }
   },
   methods: {
-    next() {
-      this.pos += 600;
-    },
     prev() {
-      this.pos -= 600;
+      this.pos = Math.min(0, this.pos + 600);
+    },
+    next() {
+      const maxpos = this.$refs.slider.scrollWidth;
+      const width = this.$refs.slider.clientWidth
+      this.pos = Math.max(-maxpos + width, this.pos - 600);
     },
     getModal(e){
       // console.log(e.target.class);
@@ -51,7 +53,7 @@ export default{
     <h1>{{ title }}</h1>
     <input type="button" class="prev" title="Précédent" value="◀" aria-label="Défiler vers la précédente" v-on:click="prev">
     <input type="button" class="next" title="Suivant" value="▶" aria-label="Défiler vers la suite" v-on:click="next">
-    <ul v-if="filterMedias.length > 0" :style="'transform: translateX('+ pos + 'px)'">
+    <ul v-if="filterMedias.length > 0" :style="'transform: translateX('+ pos + 'px)'" ref="slider">
       <li v-for="media in filterMedias" :key="media.id" >
         <a href="#">
           <!-- <span class="visually-hidden">{{ media.title }}</span> -->

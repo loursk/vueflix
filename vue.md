@@ -242,3 +242,29 @@ On surveille une donnée et on réagit lorsqu'il y a un changement (comme UseEff
 
 internationalization = i18n
 localization = L10n
+
+## Lifecycle 
+
+`Hooks` => permet de se brancher lors d'un événement du cycle de vie de Vue
+
+Ex:
+
+Options APi   |   Composition APi
+`mounted`     |   `onMounted()`
+`unmounted`   |   `onUnmounted()`
+
+## Styles
+
+npm add Sass
+
+<style scoped></style>
+  - Portée des modifications à apporter sur le document. Va rajouter un attribut sur le premier élément du template et donc éviter de modifier les autres éléments de la page par erreur (bleed)
+- Permet de lazy load les styles.
+- Plus propre
+
+<style module></style>
+Comme le scoped, mais va rajouter préfixer directement les classes et non le premier composant du template
+
+
+On peut dynamiser le style :style dans le template
+On peut aussi injecter des v-bind dans le css pour avoir des valeurs dynamiques.

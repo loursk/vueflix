@@ -6,9 +6,14 @@ $footercolor: #485aa1;
 $altcolor: #ffcc00;
 $shadow: 0 2px 4px 0 rgba(0,0,0,0.20);
 
+:root{
+  --bodybg :red;
+}
+
 /* Styles globaux */
 
 body {
+  // background: var(--bodybg);
   background: $bgcolor;
   color: white;
   padding: 0;
