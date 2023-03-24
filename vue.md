@@ -268,3 +268,67 @@ Comme le scoped, mais va rajouter préfixer directement les classes et non le pr
 
 On peut dynamiser le style :style dans le template
 On peut aussi injecter des v-bind dans le css pour avoir des valeurs dynamiques.
+
+
+## Teleport
+
+Englober une portion de template avec <teleport> 
+
+exemple : <Teleport to="#target"></Teleport>
+
+## Suspense (experiemental)
+
+Permet d'attendre le chargement de différents contenu pour qu'ils apparaissent de façon synchrone
+
+## Component is
+
+<component is="messageList"></composant>
+
+## KeepAlive
+
+Garder en cache une instance de composant. Permet d'améliorer la performance et par exemple faire une seul render d'un Big menu et de le keepalive pour éviter à chaque fois de le re-render
+
+## slots
+
+Emplacement de contenu qu'on va réserver.
+
+Parent 
+
+<ElementVue>Hello</ElementVue>
+
+Enfant =>
+
+<template>
+  <slot></slot>
+</template>
+
+Slot sera remplacé par `Hello`
+
+Peut être utiliser pour faire un fallback => ce qui doit être affiché si rien n'est précisé.
+On peut utiliser différents slots avec une propriété name
+
+Parent:
+<template v-slot:icon> <svg>...</svg> </template>
+Enfant:
+<slot name="icon"></slot>
+
+
+## Transition / Transition Group
+
+<Transition> pour un élément ajouté/supprimé au DOM
+<TransitionGroup> pour un élément faisant partie d'une boucle v-for
+
+En gros rajoute des états sur les éléments pour cibler un moment précis d'une transition.
+
+##  Reactivité
+
+Vue 2 => get () / set ()
+Vue 3 => Proxy
+
+## Ticks
+
+import { nextTick } from 'vue'
+Principe de file d'attente :
+chaque modification sont mises en attentes et seront effectuées en même temps lors de chaque "Tick" du DOM
+
+
