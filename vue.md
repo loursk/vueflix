@@ -332,3 +332,18 @@ Principe de file d'attente :
 chaque modification sont mises en attentes et seront effectuées en même temps lors de chaque "Tick" du DOM
 
 
+## Routes
+name : 'exemple'
+component : composant associé <Exemple>
+path: chemin 'contact'
+meta: les meta données
+
+<RouterView />
+<RouterLink to="/" /> => lien vers une vue spécifique
+
+
+récupérer paramètres : param
+récupérer après ? : query
+
+rediriger vers une page router.push()
+

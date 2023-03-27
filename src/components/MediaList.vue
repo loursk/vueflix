@@ -56,10 +56,12 @@ export default{
     <ul v-if="filterMedias.length > 0" :style="'transform: translateX('+ pos + 'px)'" ref="slider">
       <li v-for="media in filterMedias" :key="media.id" >
         <a href="#">
-          <!-- <span class="visually-hidden">{{ media.title }}</span> -->
-          <!-- pour cacher un élément sans le retirer des liseurs d'écran -->
-          <h2 class="title">{{ media.title }}</h2>
-          <img :src="'medias/'  + media.img" alt="" srcset="" @click="getModal">
+          <RouterLink :to="`/media/${media.id}`">
+            <!-- <span class="visually-hidden">{{ media.title }}</span> -->
+            <!-- pour cacher un élément sans le retirer des liseurs d'écran -->
+            <h2 class="title">{{ media.title }}</h2>
+            <img :src="'medias/'  + media.img" alt="" srcset="">
+          </RouterLink>
         </a>
       </li>
     </ul>

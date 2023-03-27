@@ -15,8 +15,8 @@ const notifications = ref(0)
       </div>
       <nav id="nav">
         <ul>
-          <li><a href="/">Accueil</a></li>
-          <li><a href="/about">À propos</a></li>
+          <li><RouterLink to='/'>Accueil</RouterLink></li>
+          <li><RouterLink to='/about'>À propos</RouterLink></li>
         </ul>
       </nav>
       <div id="profile">
@@ -27,7 +27,7 @@ const notifications = ref(0)
     </header>
 
     <RouterView />
-    <footer>© Vueflix {{ new Date().getFullYear() }} - Mentions légales - À Propos</footer>
+    <footer>© Vueflix {{ new Date().getFullYear() }} - Mentions légales - <RouterLink to='/about'>À propos</RouterLink></footer>
   </div>
 </template>
 
