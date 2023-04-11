@@ -1,12 +1,12 @@
 <script>
-import data from "@/data.js"
+// import data from "@/data.js" // remplacée par la reqûete vers l'API => fetchData
 import MediaList from "./MediaList.vue"
 
 export default{
   data () {
     return {
       search: '',
-      data
+      data: []
     }
   },
   components: {
@@ -40,7 +40,14 @@ export default{
     }
   },
   mounted () {
+      this.fetchData()
       this.$refs.search.focus()
+  },
+  methods: {
+    async fetchData(){
+      const response = await fetch(import.meta.env.VITE_URL_API)
+      this.data = await response.json();
+    }
   }
 }
 </script>

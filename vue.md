@@ -347,3 +347,44 @@ récupérer après ? : query
 
 rediriger vers une page router.push()
 
+## API
+
+Insomnia, Postman => permet de tester des API
+
+Methodes :
+XHR => vieux
+fetch => defaut : living standard du WhatWG
+axios => plus puissant (lib)
+
+Apollo pour GraphQL => à voir mais peu utilisé
+
+## STORE
+
+Anciennement, on pouvait utiliser l'`Event Bus` pour transmettre des information entre composants sans faire des emits à chaque parent et faire passer les informations en props.
+
+Maintenant on utilise `Pinia` (Voir `VueX` mais plus recommandé actuellement)
+
+
+Pinia :
+`state` => état glabal partagé (`~data`)
+`getters` => permet de lire le state (`~computed`)
+`actions` => permet de modifier le state (`~methods`)
+
+On crée un fichier de store par "composant" / "thématique"
+
+# State
+
+Partie centrale qui défini l'état initial de l'application. C'est un objet.
+On peut par exemple le reinitiliser => store.$reset()
+
+# getters
+
+Methodes qui permettent d'accéder au store de la même façon que les computed. En modifiant légèrement le résultat du store.
+
+# actions
+
+Methodes de modifications plus poussée, comme les méthodes classiques que l'ont utilise dans nos composants.
+
+# two-way binding avec computed
+
+Pour lire et écrire directement des valeurs du store avec un v-model par exemple.
