@@ -1,6 +1,7 @@
 <script>
 // import data from "@/data.js" // remplacée par la reqûete vers l'API => fetchData
 import MediaList from "./MediaList.vue"
+import { useMediaStore } from "../stores/medias"
 
 export default{
   data () {
@@ -47,6 +48,11 @@ export default{
     async fetchData(){
       const response = await fetch(import.meta.env.VITE_URL_API)
       this.data = await response.json();
+
+      const store = useMediaStore()
+      store.$patch({
+        medias: this.data
+      })
     }
   }
 }
