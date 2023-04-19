@@ -1,9 +1,13 @@
 <script setup>
 import { /*RouterLink,*/ RouterView } from 'vue-router'
+import loginForm from "./components/LoginForm.vue"
 // import HelloWorld from './components/HelloWorld.vue'
 
 import { ref } from 'vue'
+
 const notifications = ref(0)
+
+
 
 </script>
 
@@ -22,7 +26,8 @@ const notifications = ref(0)
       <div id="profile">
         <span v-show=" notifications !== 0 " class="notifications"><span>{{ notifications }}</span> notifications</span>
         <button class="register">S'inscrire</button>
-        <button v-on:click="notifications++" class="auth">Connexion</button>
+        <button v-on:click="showPopin" class="auth">Connexion</button>
+        <button v-on:click="notifications++" class="auth">Notifs</button>
       </div>
     </header>
 
