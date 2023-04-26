@@ -2,7 +2,6 @@
 // import data from "@/data.js" // remplacée par la reqûete vers l'API => fetchData
 import MediaList from "./MediaList.vue"
 import { useMediaStore } from "../stores/medias"
-import { useMediaStore } from "../stores/medias"
 // import { useStore } from 'pinia'
 
 
@@ -51,10 +50,10 @@ export default{
       const response = await fetch(import.meta.env.VITE_URL_API)
       const json = await response.json();
 
-      const store = useMediaStore()
-      store.$patch({
-        medias: this.data
-      })
+      // const store = useMediaStore()
+      // store.$patch({
+      //   medias: this.data
+      // })
       this.store.setMedias(json)
       // this.store.$patch({
       //   medias: json
@@ -73,13 +72,13 @@ export default{
   <main class="mediagallery">
     
     <!-- affichage des films -->    
-    <MediaList :medias="getMovies" :search="search" title="Films"/>
+    <MediaList type="movie" :search="search" title="Films"/>
 
     <!-- affichage des séries -->
-    <MediaList :medias="getSeries" :search="search" title="Séries"/>
+    <MediaList type="serie" :search="search" title="Séries"/>
 
     <!-- années 90 -->
-    <MediaList :medias="getNineties" :search="search" title="Années 90"/>
+    <!-- <MediaList :medias="getNineties" :search="search" title="Années 90"/> -->
 
     <!-- Aucun résultats -->
     <!-- <ul v-if="!getMovies.length && !getSeries.length">

@@ -18,6 +18,11 @@ export default{
     //   default: () => [],
     //   required: true
     // },
+    type: {
+      type: String,
+      default: '',
+      required: false
+    },
     search: String,
     title: {
       type: String,
@@ -28,12 +33,26 @@ export default{
     filterMedias(){
       if(this.search){
       return this.store.mediaState.filter(media => {
-          return media.title.toLowerCase().includes(this.search.toLowerCase())
+          return media.title.toLowerCase().includes(this.search.toLowerCase())filter(media => {
+        return media.type === this.type
+      })
         })
       }
 
-      return this.store.mediaState
+      return this.store.mediaState.filter(media => {
+        return media.type === this.type
+      })
     }
+  },
+  /**
+   *  Filtre les séries
+   */
+  getSeries(){
+    const series = this.store.mediaState.filter(media => {
+      return media.type === "serie"
+    })
+
+    return series
   },
   methods: {
     prev() {
@@ -60,6 +79,33 @@ export default{
     <input type="button" class="next" title="Suivant" value="▶" aria-label="Défiler vers la suite" v-on:click="next">
     <ul v-if="filterMedias.length > 0" :style="'transform: translateX('+ pos + 'px)'" ref="slider">
       <li v-for="media in filterMedias" :key="media.id" >
+        <a href="#">
+          <RouterLink :to="`/media/${media.id}`">
+            <!-- <span class="visually-hidden">{{ media.title }}</span> -->
+            <!-- pour cacher un élément sans le retirer des liseurs d'écran -->
+            <h2 class="title">{{ media.title }}</h2>
+            <img :src="'medias/'  + media.img" alt="" srcset="">
+          </RouterLink>
+        </a>
+      </li>
+    </ul>
+
+    
+    <ul v-if="type === 'serie'" :style="'transform: translateX('+ pos + 'px)'" ref="slider">
+      <li v-for="media in getSeries" :key="media.id" >
+        <a href="#">
+          <RouterLink :to="`/media/${media.id}`">
+            <!-- <span class="visually-hidden">{{ media.title }}</span> -->
+            <!-- pour cacher un élément sans le retirer des liseurs d'écran -->
+            <h2 class="title">{{ media.title }}</h2>
+            <img :src="'medias/'  + media.img" alt="" srcset="">
+          </RouterLink>
+        </a>
+      </li>
+    </ul>
+
+    <ul v-if="type === 'movie'" :style="'transform: translateX('+ pos + 'px)'" ref="slider">
+      <li v-for="media in getSeries" :key="media.id" >
         <a href="#">
           <RouterLink :to="`/media/${media.id}`">
             <!-- <span class="visually-hidden">{{ media.title }}</span> -->
