@@ -1,13 +1,17 @@
 <script setup>
 import { /*RouterLink,*/ RouterView } from 'vue-router'
+import loginForm from "./components/LoginForm.vue"
 import LoginForm from "./components/LoginForm.vue"
 import RegisterForm from "./components/RegisterForm.vue"
 // import MaryPopin from './components/MaryPopin.vue'
 
 import { ref } from 'vue'
+
 import MaryPopin from './components/MaryPopin.vue';
 
 const notifications = ref(0)
+
+
 
 const showLogin = ref(false)
 const showRegister = ref(false)
@@ -29,6 +33,8 @@ const showRegister = ref(false)
       <div id="profile">
         <span v-show=" notifications !== 0 " class="notifications"><span>{{ notifications }}</span> notifications</span>
         <button class="register">S'inscrire</button>
+        <button v-on:click="showPopin" class="auth">Connexion</button>
+        <button v-on:click="notifications++" class="auth">Notifs</button>
         <button v-on:click="showPopin" class="auth">Connexion</button>
         <button v-on:click="notifications++" class="auth">Notifs</button>
       </div>

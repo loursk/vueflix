@@ -2,6 +2,7 @@
 // import data from "@/data.js" // remplacée par la reqûete vers l'API => fetchData
 import MediaList from "./MediaList.vue"
 import { useMediaStore } from "../stores/medias"
+import { useMediaStore } from "../stores/medias"
 // import { useStore } from 'pinia'
 
 
@@ -49,6 +50,11 @@ export default{
   async mounted () {
       const response = await fetch(import.meta.env.VITE_URL_API)
       const json = await response.json();
+
+      const store = useMediaStore()
+      store.$patch({
+        medias: this.data
+      })
       this.store.setMedias(json)
       // this.store.$patch({
       //   medias: json
