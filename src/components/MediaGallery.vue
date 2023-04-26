@@ -1,12 +1,19 @@
 <script>
 // import data from "@/data.js" // remplacée par la reqûete vers l'API => fetchData
 import MediaList from "./MediaList.vue"
+import { useMediaStore } from "../stores/medias"
+// import { useStore } from 'pinia'
+
 
 export default{
+  setup() {
+    const store = useMediaStore();
+    return { store }
+  },
   data () {
     return {
       search: '',
-      data: []
+      // data: [] // plus besoin car on utilise le store
     }
   },
   components: {
@@ -17,7 +24,7 @@ export default{
      *  Filtre les Films
      */
     getMovies(){
-      return this.data.filter(media => {
+      return this.store.mediaState.filter(media => {
 
         return media.type === "movie"
       })
@@ -26,7 +33,7 @@ export default{
      *  Filtre les séries
      */
     getSeries(){
-      return this.data.filter(media => {
+      return this.store.mediaState.filter(media => {
         return media.type === "serie"
       })
     },
@@ -34,20 +41,19 @@ export default{
      *  Filtre les médias des années 90
      */
     getNineties(){
-      return this.data.filter(media => {
+      return this.store.mediaState.filter(media => {
         return media.year > 1990 && media.year <= 2000
       })
     }
   },
-  mounted () {
-      this.fetchData()
-      this.$refs.search.focus()
-  },
-  methods: {
-    async fetchData(){
+  async mounted () {
       const response = await fetch(import.meta.env.VITE_URL_API)
-      this.data = await response.json();
-    }
+      const json = await response.json();
+      this.store.setMedias(json)
+      // this.store.$patch({
+      //   medias: json
+      // })
+      this.$refs.search.focus()
   }
 }
 </script>

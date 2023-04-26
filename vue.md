@@ -345,7 +345,7 @@ meta: les meta données
 récupérer paramètres : param
 récupérer après ? : query
 
-rediriger vers une page router.push()
+rediriger vers une page $router.push()
 
 ## API
 

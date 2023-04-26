@@ -1,5 +1,6 @@
 <script>
 import { transform } from '@vue/compiler-core'
+import { useMediaStore } from '../stores/medias'
 
 export default{
   data () {
@@ -7,12 +8,16 @@ export default{
       pos: 0 // position horizontale en px
     }
   },
+  setup(){
+    const store = useMediaStore()
+    return { store }
+  },  
   props: {
-    medias: {
-      type: Array,
-      default: () => [],
-      required: true
-    },
+    // medias: {
+    //   type: Array,
+    //   default: () => [],
+    //   required: true
+    // },
     search: String,
     title: {
       type: String,
@@ -22,12 +27,12 @@ export default{
   computed: {
     filterMedias(){
       if(this.search){
-      return this.medias.filter(media => {
+      return this.store.mediaState.filter(media => {
           return media.title.toLowerCase().includes(this.search.toLowerCase())
         })
       }
 
-      return this.medias
+      return this.store.mediaState
     }
   },
   methods: {
