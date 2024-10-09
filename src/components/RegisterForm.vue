@@ -1,6 +1,6 @@
 <template>
     <form class="login">
-        <p><img src="logo.svg"></p>
+        <p><img src="/src/assets/logo.svg"></p>
         <h3>S'inscrire</h3>
         <p>
             <label for="login">Identifiant</label>

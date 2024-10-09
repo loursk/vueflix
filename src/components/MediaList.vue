@@ -1,5 +1,4 @@
 <script>
-import { transform } from '@vue/compiler-core'
 import { useMediaStore } from '../stores/medias'
 
 export default{
@@ -33,7 +32,7 @@ export default{
     filterMedias(){
       if(this.search){
       return this.store.mediaState.filter(media => {
-          return media.title.toLowerCase().includes(this.search.toLowerCase())filter(media => {
+          return media.title.toLowerCase().includes(this.search.toLowerCase()).filter(media => {
         return media.type === this.type
       })
         })
